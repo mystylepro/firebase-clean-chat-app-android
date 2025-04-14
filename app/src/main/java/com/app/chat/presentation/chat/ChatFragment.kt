@@ -118,4 +118,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding>() {
             override fun afterTextChanged(s: Editable?) = Unit
         })
     }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.updateTypingStatus(chatId, currentUserId, false)
+    }
+
 }

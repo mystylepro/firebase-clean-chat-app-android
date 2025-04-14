@@ -23,4 +23,29 @@
         <item name="windowSplashScreenAnimationDuration">300</item>
         <item name="postSplashScreenTheme">@style/Theme.Chat</item>
     </style>
+
+    <style name="TextHeading.Shadowed" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textHeading1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.CleanShadow" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textHeading1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:shadowColor">#AA000000</item> <!-- semi-dark -->
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.5</item> <!-- Tiny radius keeps sharp edges -->
+    </style>
+
+
 </resources>

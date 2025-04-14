@@ -17,10 +17,10 @@
         android:layout_marginTop="48dp"
         android:layout_marginStart="16dp"
         android:gravity="start"
-        android:lineSpacingExtra="4dp"
-        android:fontFamily="sans-serif"
+        style="@style/TextHeading.Shadowed"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+ />
 
     <FrameLayout
         android:id="@+id/formContainer"
@@ -49,7 +49,9 @@
                 android:layout_marginEnd="16dp"
                 android:text="Email"
                 android:textColor="@color/textHeading1"
+                android:textStyle="bold"
                 android:textSize="14sp"
+                style="@style/TextAppearance.CleanShadow"
                 app:layout_constraintBottom_toTopOf="@+id/emailEditText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +83,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Password"
+                style="@style/TextAppearance.CleanShadow"
                 android:textColor="@color/textHeading1"
+                android:textStyle="bold"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +116,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Forgot password?"
-                android:textColor="@color/textHeading2"
+                style="@style/TextAppearance.CleanShadow"
+
+                android:textStyle="bold"
+                android:textColor="@color/textHeading1"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@+id/loginButton"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Don't have account?"
+                style="@style/TextAppearance.CleanShadow"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@+id/signupText"
@@ -160,7 +168,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=" Sign up"
-                android:textColor="@color/textHeading2"
+                style="@style/TextAppearance.CleanShadow"
+
+                android:textColor="@color/textHeading1"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -170,4 +180,28 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
+
+    <!-- 🔹 Full-Screen Loader - MUST BE LAST -->
+    <FrameLayout
+        android:id="@+id/loaderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:lottie_rawRes="@raw/loading"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+    </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

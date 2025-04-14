@@ -66,6 +66,13 @@ class ChatViewModel @Inject constructor(
         }
     }
 
+    fun updateTypingStatus(chatId: String, userId: String, isTyping: Boolean) {
+        viewModelScope.launch {
+            chatUseCase.updateTypingStatus(chatId, userId, isTyping)
+        }
+    }
+
+
     fun observeTyping(chatId: String, receiverId: String) {
         viewModelScope.launch {
             chatUseCase.observeTypingStatus(chatId, receiverId).collect {

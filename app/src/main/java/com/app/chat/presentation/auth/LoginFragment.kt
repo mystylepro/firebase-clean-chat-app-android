@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.app.chat.R
 import com.app.chat.databinding.FragmentLoginBinding
 import com.app.chat.presentation.base.BaseFragment
+import com.app.chat.presentation.common.UiEvent
 import com.app.chat.utils.navigateAndClearBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +19,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val viewModel: AuthViewModel by viewModels()
 
-    override val softInputMode: Int?
+    override val softInputMode: Int
         get() = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
 
     override fun bindView(inflater: LayoutInflater, container: ViewGroup?): FragmentLoginBinding {
@@ -33,6 +34,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             val password = passwordEditText.text.toString()
             viewModel.loginWithValidation(email, password)
         }
+
+        collectFlow(viewModel.eventFlow) { event ->
+            when (event) {
+                is UiEvent.ShowLoader -> binding.loaderContainer.visibility = View.VISIBLE
+                is UiEvent.HideLoader -> binding.loaderContainer.visibility = View.GONE
+                is UiEvent.ShowToast -> showToast(event.message)
+            }
+        }
+
 
         collectFlow(viewModel.loginEvent) { result ->
             result.onSuccess {
@@ -60,4 +70,5 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
         }
     }
+
 }

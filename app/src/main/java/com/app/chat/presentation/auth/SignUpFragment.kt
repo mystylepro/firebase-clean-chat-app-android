@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.app.chat.R
 import com.app.chat.databinding.FragmentSignUpBinding
 import com.app.chat.presentation.base.BaseFragment
+import com.app.chat.presentation.common.UiEvent
 import com.app.chat.utils.navigateAndClearBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
 
     private val viewModel: AuthViewModel by viewModels()
 
-    override val softInputMode: Int?
+    override val softInputMode: Int
         get() = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
 
     override fun bindView(inflater: LayoutInflater, container: ViewGroup?): FragmentSignUpBinding {
@@ -46,6 +47,14 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
                 findNavController().navigateAndClearBackStack(R.id.chatListFragment)
             }.onFailure {
                 showToast(it.message)
+            }
+        }
+
+        collectFlow(viewModel.eventFlow) { event ->
+            when (event) {
+                is UiEvent.ShowLoader -> binding.loaderContainer.visibility = View.VISIBLE
+                is UiEvent.HideLoader -> binding.loaderContainer.visibility = View.GONE
+                is UiEvent.ShowToast -> showToast(event.message)
             }
         }
 

@@ -40,10 +40,9 @@
             android:id="@+id/actionGlobalChatListFragment"
             app:destination="@id/chatListFragment" />
 
-        <argument
-            android:name="showAllUsers"
-            app:argType="boolean"
-            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_chatList_to_userList"
+            app:destination="@id/userListFragment" />
     </fragment>
 
     <fragment

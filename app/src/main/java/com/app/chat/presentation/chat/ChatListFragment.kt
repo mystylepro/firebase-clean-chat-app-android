@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,8 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.chat.R
 import com.app.chat.databinding.FragmentChatListBinding
 import com.app.chat.presentation.chat.adapter.ChatListAdapter
+import com.app.chat.utils.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -49,11 +52,14 @@ class ChatListFragment : Fragment() {
         }
         rvUsers.layoutManager = LinearLayoutManager(requireContext())
         rvUsers.adapter = chatListAdapter
+
+        val space = resources.getDimensionPixelSize(R.dimen.dimen_4dp)
+        rvUsers.addItemDecoration(VerticalSpaceItemDecoration(space))
     }
 
     private fun setupListeners() = with(binding) {
         btnChatPeople.setOnClickListener {
-            viewModel.loadUsersExcludingSelf()
+            findNavController().navigate(R.id.action_chatList_to_userList)
         }
     }
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.chat.domain.model.User
 import com.app.chat.domain.usecase.AuthUseCase
 import com.app.chat.domain.usecase.AuthValidationResult
+import com.app.chat.presentation.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,13 +31,25 @@ class AuthViewModel @Inject constructor(
     private val _signupEvent = MutableSharedFlow<Result<User>>()
     val signupEvent: SharedFlow<Result<User>> = _signupEvent
 
+    val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow: SharedFlow<UiEvent> = _eventFlow
 
     fun loginWithValidation(email: String, password: String) {
         viewModelScope.launch {
             when (val result = useCase.validateLogin(email, password)) {
                 is AuthValidationResult.Valid -> {
+                    _eventFlow.emit(UiEvent.ShowLoader)
                     val loginResult = useCase.login(email, password)
-                    _loginEvent.emit(loginResult)
+                    loginResult.fold(
+                        onSuccess = {
+                            _eventFlow.emit(UiEvent.HideLoader)
+                            _loginEvent.emit(Result.success(it))
+                        },
+                        onFailure = {
+                            _eventFlow.emit(UiEvent.HideLoader)
+                            _loginEvent.emit(Result.failure(it))
+                        }
+                    )
                 }
                 is AuthValidationResult.Invalid -> {
                     _validationError.emit(result.message)
@@ -45,12 +58,23 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+
     fun signupWithValidation(name: String, email: String, password: String) {
         viewModelScope.launch {
             when (val result = useCase.validateSignup(name, email, password)) {
                 is AuthValidationResult.Valid -> {
+                    _eventFlow.emit(UiEvent.ShowLoader)
                     val signupResult = useCase.signup(name, email, password)
-                    _signupEvent.emit(signupResult)
+                    signupResult.fold(
+                        onSuccess = {
+                            _eventFlow.emit(UiEvent.HideLoader)
+                            _signupEvent.emit(Result.success(it))
+                        },
+                        onFailure = {
+                            _eventFlow.emit(UiEvent.HideLoader)
+                            _signupEvent.emit(Result.failure(it))
+                        }
+                    )
                 }
                 is AuthValidationResult.Invalid -> {
                     _validationError.emit(result.message)
@@ -58,4 +82,5 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
 }
