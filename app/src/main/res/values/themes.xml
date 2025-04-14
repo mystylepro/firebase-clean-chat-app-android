@@ -14,6 +14,13 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
 
-        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.ChatApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_background</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.Chat</item>
     </style>
 </resources>

@@ -21,7 +21,7 @@ class AuthUseCase @Inject constructor(
     fun validateLogin(email: String, password: String): AuthValidationResult {
         return when {
             email.isBlank() -> AuthValidationResult.Invalid("Email is required")
-            !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ->
+            !Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})").matches(email) ->
                 AuthValidationResult.Invalid("Invalid email format")
             password.isBlank() -> AuthValidationResult.Invalid("Password is required")
             password.length < 6 -> AuthValidationResult.Invalid("Password must be at least 6 characters")
@@ -33,7 +33,7 @@ class AuthUseCase @Inject constructor(
         return when {
             name.isBlank() -> AuthValidationResult.Invalid("Name is required")
             email.isBlank() -> AuthValidationResult.Invalid("Email is required")
-            !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ->
+            !Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})").matches(email) ->
                 AuthValidationResult.Invalid("Invalid email format")
             password.isBlank() -> AuthValidationResult.Invalid("Password is required")
             password.length < 6 -> AuthValidationResult.Invalid("Password must be at least 6 characters")

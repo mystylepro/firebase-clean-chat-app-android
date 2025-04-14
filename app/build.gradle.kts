@@ -56,6 +56,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.core.splashscreen)
 
     implementation(libs.kotlin.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
