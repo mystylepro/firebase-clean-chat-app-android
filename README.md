@@ -101,3 +101,4 @@ The app is structured using Clean Architecture, split across multiple layers:
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+ 
