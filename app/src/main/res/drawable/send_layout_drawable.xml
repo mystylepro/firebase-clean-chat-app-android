@@ -1,0 +1,49 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Stronger gradient base (theme match, visible) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#79D9EF"
+                android:endColor="#33B4D6" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- 2. Slight white inner glow (center lift) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="50%"
+                android:gradientRadius="200"
+                android:startColor="#33FFFFFF"
+                android:endColor="#00FFFFFF" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- 3. Shadow/fade from bottom -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#33000000"
+                android:endColor="#00000000" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- ✅ 4. BOLD visible border -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="1dp"
+                android:color="#FFFFFFFF" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+</layer-list>

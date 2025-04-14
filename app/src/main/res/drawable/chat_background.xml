@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- Base gradient background -->
+    <path
+        android:fillColor="#FFDEE9"
+        android:pathData="M0,0h360v640h-360z" />
+
+    <!-- Back wave -->
+    <path
+        android:fillColor="#B5FFFC"
+        android:pathData="M0,500 Q90,440 180,500 T360,500 V640 H0 Z" />
+
+    <!-- Front wave -->
+    <path
+        android:fillColor="#A1C4FD"
+        android:pathData="M0,550 Q90,480 180,550 T360,550 V640 H0 Z" />
+</vector>

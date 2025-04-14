@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.app.chat.presentation.auth.LoginFragment"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_login_to_chatList"
+            app:destination="@id/chatListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.app.chat.presentation.auth.SignUpFragment"
+        android:label="Signup">
+        <action
+            android:id="@+id/action_signup_to_chatList"
+            app:destination="@id/chatListFragment" />
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.app.chat.presentation.chat.ChatListFragment"
+        android:label="Chat List">
+        <action
+            android:id="@+id/action_chatList_to_chat"
+            app:destination="@id/chatFragment" />
+
+        <action
+            android:id="@+id/actionGlobalChatListFragment"
+            app:destination="@id/chatListFragment" />
+
+        <argument
+            android:name="showAllUsers"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.app.chat.presentation.chat.ChatFragment"
+        android:label="">
+
+        <argument
+            android:name="receiverId"
+            app:argType="string" />
+
+        <argument
+            android:name="receiverName"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.app.chat.presentation.chat.UserListFragment"
+        android:label="New Chat">
+        <action
+            android:id="@+id/action_userList_to_chat"
+            app:destination="@id/chatFragment" />
+    </fragment>
+
+</navigation>

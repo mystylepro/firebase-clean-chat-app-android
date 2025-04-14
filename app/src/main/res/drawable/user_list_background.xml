@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Dark Slate Gradient Base -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#1E1F28"
+                android:endColor="#323745"
+                android:angle="90"/>
+        </shape>
+    </item>
+
+    <!-- Top-left Soft Glow -->
+    <item android:left="-40dp" android:top="-40dp">
+        <shape android:shape="oval">
+            <size android:width="220dp" android:height="220dp"/>
+            <solid android:color="#2A2D3A" />
+        </shape>
+    </item>
+
+    <!-- Bottom-right Accent Blob -->
+    <item android:right="-60dp" android:bottom="-60dp">
+        <shape android:shape="oval">
+            <size android:width="280dp" android:height="280dp"/>
+            <solid android:color="#44475A" />
+        </shape>
+    </item>
+</layer-list>
